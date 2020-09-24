@@ -1,3 +1,8 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 footer{
     background: rgb(12, 12, 12);
     padding: 20px;
@@ -5,14 +10,27 @@ footer{
     text-align: center;
 
 }
+
 #bacground{
-    background-image:url(../img/theatre.jpeg);
+    background-image:linear-gradient(to right, rgba(19, 18, 18, 0.705),rgba(39, 34, 34, 0.048)),url(../img/hospital.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 100vh;
-
-}
-*{
+    background-color: black;
     padding: 0;
     margin: 0;
+}
+#central{
+    text-align: center;
+    font-style: normal;
+    font-size:20rem;
+    padding-top:7rem;
+    font-family: sans-serif;
+}
+#centra{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+#icon{
+    font-size: 8rem;
 }
