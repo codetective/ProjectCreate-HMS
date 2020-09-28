@@ -7,7 +7,9 @@
   * Database name is **'hms'**, create a db with this name in your *phpmyadmin*
   * Run 
   > composer install
+
   > npm install && npm run dev
+  
   > php artisan migrate
   * Create a new branch for every contribution.
   * Prefix each branch with **f-** if adding a feature and **b-** if fixing bugs.
