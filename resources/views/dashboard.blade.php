@@ -1,5 +1,5 @@
-@extends('layouts.app')
-<section>
+@extends('layouts.master')
+@section('content')
 
         {{-- <nav class="navbar navbar-expand-sm navbar-light bg-light">
             <div class="container">
@@ -61,7 +61,7 @@
     </div>
 </section> --}}
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-2 part1">
             <div class="top">
                 <p class="heart"><i class="fa fa-heartbeat" aria-hidden="true"></i>
@@ -84,11 +84,88 @@
                     <li><a href="#"></a><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Register A Patient</li>
                     <li><a href="#"></a><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Patient Appointments</li>
                     <li><a href="#"></a><i class="fa fa-inbox" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Counselling Sessions </li>
-                    <li><a href="#"></a><i class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;FAQ</li>
+
+
+            @if (Route::has('login'))
+                    @auth
+                    @if ($user_type === 'Admin' ||$user_type ==='superadmin' )
+                    <li>
+                        <a href="/register" class="nav-link">Register new user</a>
+                    </li>
+
+                    @endif
+                <li>
+                      <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <a class="nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                </form>
+                    </li>
+                     @endif
+                @endif
+
                     <li><a href="#"></a><i class="fa fa-gear" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Settings</li>
                 </ul>
             </div>
 
         </div>
     </div>
+ --}}
 
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Simple Table</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>Name</th>
+                <th>country</th>
+                <th>city</th>
+              <thead class=" text-primary">
+
+              </thead>
+              <tbody>
+                 <tr>
+
+              <td>nig</td>
+              <td>aks</td>
+              <td>wer</td>
+              <td>dd</td>
+
+                 </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+@endsection
+
+
+@section('script')
+<!--   Core JS Files   -->
+<script src="../assets/js/core/jquery.min.js"></script>
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/core/bootstrap.min.js"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chart JS -->
+<script src="../assets/js/plugins/chartjs.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+<script src="../assets/demo/demo.js"></script>
+@endsection
