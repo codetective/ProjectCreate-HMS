@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <section>
 
-        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        {{-- <nav class="navbar navbar-expand-sm navbar-light bg-light">
             <div class="container">
 
                 <!--tips: to change the nav placement use .fixed-top,.fixed-bottom,.sticky-top-->
@@ -21,7 +21,7 @@
                     <li class="nav-item">
                         <a href="/register" class="nav-link">Register new user</a>
                     </li>
-                        
+
                     @endif
                 <li class="nav-item">
                       <form method="POST" action="{{ route('logout') }}">
@@ -44,7 +44,7 @@
                 @endif
 
         </div>
-    
+
         </nav>
     <div class="container">
   @if ($errors->any())
@@ -59,4 +59,36 @@
     @endif
 <h5 class="text-center display-5">{{$user_type}} Dashboard</h5>
     </div>
-</section>
+</section> --}}
+
+    <div class="row">
+        <div class="col-md-2 part1">
+            <div class="top">
+                <p class="heart"><i class="fa fa-heartbeat" aria-hidden="true"></i>
+                    <h2>Alpha HMS</h2>
+                </p>
+            </div>
+            <div class="topdown">
+                <p>
+                    <span><img src="" style="height: 60px; width: 60px; border-radius: 50%;" alt=""></span>
+                    <h5 class="name" ></h5>
+                </p>
+            </div>
+            <div class="empty">
+
+            </div>
+            <div class="mt-3 icons">
+                <ul>
+                    <li><a href="#"></a><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Dashboard</li>
+                    <li><a href="#"></a><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Register A Doctor</li>
+                    <li><a href="#"></a><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Register A Patient</li>
+                    <li><a href="#"></a><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Patient Appointments</li>
+                    <li><a href="#"></a><i class="fa fa-inbox" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Counselling Sessions </li>
+                    <li><a href="#"></a><i class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;FAQ</li>
+                    <li><a href="#"></a><i class="fa fa-gear" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Settings</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+

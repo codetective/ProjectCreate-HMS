@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Alpha HMS</title>
     <link rel="stylesheet" href={{asset('css/bootstrap.min.css')}}>
-    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href={{asset('css/stylesheet.css')}}>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
