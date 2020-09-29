@@ -17,7 +17,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role == 'Admin') {
+        if (Auth::user()->name == 'SuperAdmin') {
             return $next($request);
         } else {
             return redirect('/dashboard')->withErrors(['status' => 'Unauthorized action']);
