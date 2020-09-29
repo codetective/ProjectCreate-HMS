@@ -17,10 +17,7 @@ use App\Models\User;
 */
 Route::get('/', [UserController::class, 'index']);
 
-Route::get('/get-started', [UserController::class, 'get_started'])->name('get-started');
 
-Route::post('/get-started', [UserController::class, 'get_started_post'])->name('registeradmin');
-Route::get('/admin-registration', [UserController::class, 'admin_reg'])->name('adminreg');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',[UserController::class,'dashboard' ])->name('dashboard');
 

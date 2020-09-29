@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-// use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Hash;
 // use Illuminate\Support\Str;
 class UserTable extends Seeder
 {
@@ -16,10 +16,10 @@ class UserTable extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'SuperAdmin',
+            'name' => 'Admin',
             'email' => 'test@test.com',
-            'password' => 'password',
-            // 'usertype' => 'usertype'
+            'password' => Hash::make('password'),
+            'role' => 'superadmin'
         ]);
     }
 }
