@@ -24,6 +24,11 @@
             @csrf
 
             <div class="form-group">
+                <x-jet-label value="{{ __('name') }}" />
+                <x-jet-input class="form-control" type="text" name="name" :value="('name')" required autofocus />
+            </div>
+
+            <div class="form-group">
                 <x-jet-label value="{{ __('Email') }}" />
                 <x-jet-input class="form-control" type="email" name="email" :value="old('email')" required autofocus />
             </div>
