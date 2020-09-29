@@ -13,21 +13,21 @@
             </button>
 
             @if (Route::has('login'))
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav ml-auto">
-                    @auth
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav ml-auto">
+                        @auth
 
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('/dashboard') }}" >Dashboard <span class="sr-only">(current)</span></a>
-                    </li>
-@else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                    </li>
-                     @endif
-                </ul>
-            </div>
-                @endif
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ url('/dashboard') }}" >Dashboard <span class="sr-only">(current)</span></a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            @endif
 
         </div>
         </nav>
@@ -44,7 +44,7 @@
 <a href="{{ route('login') }}" class="d-block m-auto mt-4 btn bg-primary" style="width: 60%">Continue to app</a>
     </div>
 
-</div>
+        </div>
     </div>
 </section>
 
