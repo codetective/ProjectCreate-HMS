@@ -5,7 +5,7 @@
             <div class="container">
 
                 <!--tips: to change the nav placement use .fixed-top,.fixed-bottom,.sticky-top-->
-                <a class="navbar-brand" href="/">ALPHA-HMS</a>
+                <a class="navbar-brand text-dark" href="/">ALPHA-HMS</a>
                 <!--<a class="navbar-brand" href="#">
                 <img src="..." class="d-inline-block align-top" width="30" height="30" alt="...">My Brand
             </a>-->
@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ml-auto">
                     @auth
-                    @if ($user_type === 'Admin' ||$user_type ==='superadmin' )
+                    @if ($user->role === 'Admin' ||$user->role ==='superadmin' )
                     <li class="nav-item">
                         <a href="/register" class="nav-link">Register new user</a>
                     </li>
@@ -86,9 +86,10 @@
                     <li><a href="#"></a><i class="fa fa-inbox" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Counselling Sessions </li>
 
 
-            @if (Route::has('login'))
+          
+                    @if (Route::has('login'))
                     @auth
-                    @if ($user_type === 'Admin' ||$user_type ==='superadmin' )
+                    @if ($user->role === 'Admin' ||$user->role ==='superadmin' )
                     <li>
                         <a href="/register" class="nav-link">Register new user</a>
                     </li>
@@ -116,32 +117,34 @@
     </div>
  --}}
 
-
-<div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title"> Simple Table</h4>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table">
-              <thead class=" text-primary">
-                <th>Name</th>
-                <th>country</th>
-                <th>city</th>
-              <thead class=" text-primary">
-
-              </thead>
-              <tbody>
-                 <tr>
-
-              <td>nig</td>
-              <td>aks</td>
-              <td>wer</td>
-              <td>dd</td>
-
-                 </tr>
+ @if($user->role === 'Admin' || $user->role === 'superadmin')
+ <div class="row">
+     <div class="col-md-12">
+         <div class="card">
+             <div class="card-header">
+                 <h4 class="card-title"> Active Users</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <tbody>
+                                @foreach ($userlist as $user)
+    
+                                
+                                <tr>
+                                    
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->role}}</td>
+                                    
+                                    
+                                </tr>
+                                @endforeach
+                
               </tbody>
             </table>
           </div>
@@ -149,6 +152,7 @@
       </div>
     </div>
   </div>
+  @endif
 
 @endsection
 
