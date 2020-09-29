@@ -41,7 +41,7 @@
     <div class="col-md-7 m-auto">
         <small class="d-block text-center">WELCOME TO</small>
         <h1 class="display-4 text-center">ALPHA HMS</h1>
-<a href="{{ route('get-started') }}" class="d-block m-auto mt-4 btn bg-primary" style="width: 60%">Continue to app</a>
+<a href="{{ route('login') }}" class="d-block m-auto mt-4 btn bg-primary" style="width: 60%">Continue to app</a>
     </div>
 
 </div>

@@ -23,10 +23,10 @@
  <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <x-jet-label value="{{ __('name') }}" />
                 <x-jet-input class="form-control" type="text" name="name" :value="('name')" required autofocus />
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 <x-jet-label value="{{ __('Email') }}" />
