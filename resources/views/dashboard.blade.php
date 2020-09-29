@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ml-auto">
                     @auth
-                    @if ($user_type === 'Admin')
+                    @if ($user_type === 'Admin' ||$user_type ==='superadmin' )
                     <li class="nav-item">
                         <a href="/register" class="nav-link">Register new user</a>
                     </li>
