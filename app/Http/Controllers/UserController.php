@@ -40,9 +40,12 @@ class UserController extends Controller
     }
 public function dashboard(){
 
-$user_type = Auth::user()->role;
-return view('dashboard', compact(['user_type']));
-
+    $user = Auth::user();
+    $userlist = [];
+    if ($user->role === 'Admin' || $user->role === 'superadmin') {
+        $userlist = User::all();
+    }
+return view('dashboard', compact(['user', 'userlist']));
 }
 }
 
