@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\RecordsModel;
 use Illuminate\Support\Facades\Auth;
 use function redirect;
 
@@ -42,10 +43,11 @@ public function dashboard(){
 
     $user = Auth::user();
     $userlist = [];
+    $records = RecordsModel::all();
     if ($user->role === 'Admin' || $user->role === 'superadmin') {
         $userlist = User::all();
     }
-return view('dashboard', compact(['user', 'userlist']));
+return view('dashboard', compact(['user', 'userlist', 'records']));
 }
 }
 

@@ -23,7 +23,8 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-@yield('title')
+      ALPHA_HMS
+
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -44,8 +45,8 @@
     -->
       <div class="logo">
 
-        <a href="/adminPage"  class="simple-text logo-normal">
-          ADMIN
+        <a href="##"  class="simple-text logo-normal">
+          {{$user->role}}
         </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -53,14 +54,15 @@
           <li>
             <a href="/adminPage">
               <i class="now-ui-icons design_app"></i>
-              <p>Dashboard</p>
+              <p>Add new user</p>
             </a>
           </li>
           <li>
             <a href="./user_patient">
               <i class="now-ui-icons education_atom"></i>
-              <p>Patients ProFiles</p>
+              <p>Add patient record</p>
             </a>
+          </li>
           {{-- </li>
           <li>
             <a href="./map.html">
@@ -75,6 +77,7 @@
             </a>
           </li>
           <li> --}}
+              <li>
             <a href="/role-register">
               <i class="now-ui-icons users_single-02"></i>
               <p>User Profile</p>
@@ -114,7 +117,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Table List</a>
+            <a class="navbar-brand" href="#pablo">Dashboard</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
