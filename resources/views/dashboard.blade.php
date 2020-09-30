@@ -213,7 +213,6 @@
 
                                     <td>{{$record->patient_name}}</td>
                                     <td>{{$record->patient_condition}}</td>
-                                    <td>{{$record->added_by}}</td>
                                     <td>{{$record->created_at}}</td>
 
 
