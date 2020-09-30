@@ -46,7 +46,8 @@
       <div class="logo">
 
         <a href="##"  class="simple-text logo-normal">
-          {{$user->role}}
+          <?php echo e($user->role); ?>
+
         </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -63,44 +64,14 @@
               <p>Add patient record</p>
             </a>
           </li>
-          {{-- </li>
-          <li>
-            <a href="./map.html">
-              <i class="now-ui-icons location_map-big"></i>
-              <p>Maps</p>
-            </a>
-          </li>
-          <li>
-            <a href="./notifications.html">
-              <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <li> --}}
+          
               <li>
             <a href="/role-register">
               <i class="now-ui-icons users_single-02"></i>
               <p>User Profile</p>
             </a>
           </li>
-          {{-- <li class="active ">
-            <a href="./tables.html">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Table List</p>
-            </a>
-          </li>
-          <li>
-            <a href="./typography.html">
-              <i class="now-ui-icons text_caps-small"></i>
-              <p>Typography</p>
-            </a>
-          </li>
-          <li class="active-pro">
-            <a href="./upgrade.html">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p>Upgrade to PRO</p>
-            </a>
-          </li> --}}
+          
         </ul>
       </div>
     </div>
@@ -146,34 +117,24 @@
               </li>
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
+                    <?php echo e(Auth::user()->name); ?>
+
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
+                    <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        <?php echo e(__('Logout')); ?>
+
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
+                    <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                        <?php echo csrf_field(); ?>
                     </form>
                 </div>
             </li>
-              {{-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li> --}}
+              
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons users_single-02"></i>
@@ -195,7 +156,7 @@
 
       <div class="content">
 
-      @yield('content')
+      <?php echo $__env->yieldContent('content'); ?>
 
       </div>
 
@@ -231,7 +192,8 @@
   </div>
 
 
-  @yield('script')
+  <?php echo $__env->yieldContent('script'); ?>
 </body>
 
 </html>
+<?php /**PATH C:\Users\Eno\Desktop\ProjectCreate-HMS\resources\views/layouts/master.blade.php ENDPATH**/ ?>

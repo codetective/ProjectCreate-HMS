@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 
     <head>
         <meta charset="utf-8" />
@@ -7,7 +8,7 @@
         <link rel="icon" type="image/png" href="../assets/img/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title>
-      ALPHA_HMS
+      <?php echo $__env->yieldContent('title'); ?>
         </title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
         <!--     Fonts and icons     -->
@@ -23,10 +24,12 @@
 <body>
 
     <div class="container">
-        @yield('content')
+          <?php echo e($slot); ?>
+
     </div>
 
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="<?php echo e(asset('js/bootstrap.bundle.min.js')); ?>"></script>
 </body>
 
 </html>
+<?php /**PATH C:\Users\Eno\Desktop\ProjectCreate-HMS\resources\views/layouts/guest.blade.php ENDPATH**/ ?>

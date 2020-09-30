@@ -86,7 +86,7 @@
                     <li><a href="#"></a><i class="fa fa-inbox" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Counselling Sessions </li>
 
 
-          
+
                     @if (Route::has('login'))
                     @auth
                     @if ($user->role === 'Admin' ||$user->role ==='superadmin' )
@@ -133,18 +133,18 @@
                                 <th>Role</th>
                                 <tbody>
                                 @foreach ($userlist as $user)
-    
-                                
+
+
                                 <tr>
-                                    
+
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->role}}</td>
-                                    
-                                    
+
+
                                 </tr>
                                 @endforeach
-                
+
               </tbody>
             </table>
           </div>
@@ -153,6 +153,49 @@
     </div>
   </div>
   @endif
+   <div class="row">
+     <div class="col-md-12">
+         <div class="card">
+             <div class="card-header">
+                 <h4 class="card-title"> Patient Records</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>Patient Name</th>
+                                <th>Condition</th>
+                                <th>Added by</th>
+                                <th>Date</th>
+                                <tbody>
+
+                                    @forelse ($records as $record)
+<tr>
+
+                                    <td>{{$rcord->patient_name}}</td>
+                                    <td>{{$rcord->patient_condition}}</td>
+                                    <td>{{$rcord->added_by}}</td>
+                                    <td>{{$rcord->created_at}}</td>
+
+
+                                </tr>
+                                    @empty
+<tr>
+    <td class="text-danger">NO RECORDS FOUND</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+                                    @endforelse
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection
 
