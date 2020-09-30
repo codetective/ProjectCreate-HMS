@@ -29,14 +29,7 @@
                             <x-jet-label value="{{ __('Email') }}" />
                             <x-jet-input class="form-control" type="email" name="email" :value="old('email')" required />
                         </div>
-
-                                    <div class="form-group">
-
-                            <x-jet-label value="{{ __('Password') }}" />
-                            <x-jet-input class="form-control" type="password" name="password" required autocomplete="new-password" />
-                        </div>
-
-                        <div class="form-group">
+                         <div class="form-group">
                             <x-jet-label value="{{ __('Role') }}" />
 
                             <select name="role" id="role" class="form-control border" required>
@@ -46,11 +39,20 @@
                                 <option value="User">Patient</option>
                             </select>
                         </div>
-                        <div class="form-group">
+
+                                    <div class="form-group">
+
+                            <x-jet-label value="{{ __('Password') }}" />
+                            <x-jet-input class="form-control" type="password" name="password" required autocomplete="new-password" />
+                        </div>
+                          <div class="form-group">
 
                             <x-jet-label value="{{ __('Confirm Password') }}" />
                             <x-jet-input class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
                         </div>
+
+
+
 
                         <div class="flex items-center justify-end mt-4">
 

@@ -1,5 +1,3 @@
-@extends('layouts.app')
-
         <nav class="navbar navbar-expand-sm navbar-light bg-dark">
             <div class="container">
 
@@ -12,28 +10,26 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            @if (Route::has('login'))
+            <?php if(Route::has('login')): ?>
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <ul class="navbar-nav ml-auto">
-                        @auth
+                        <?php if(auth()->guard()->check()): ?>
 
                             <li class="nav-item active">
-                                <a class="nav-link" href="{{ url('/dashboard') }}" >Dashboard <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="<?php echo e(url('/dashboard')); ?>" >Dashboard <span class="sr-only">(current)</span></a>
                             </li>
-                        @else
+                        <?php else: ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                                <a class="nav-link" href="<?php echo e(route('login')); ?>">Login</a>
                             </li>
-                        @endif
+                        <?php endif; ?>
                     </ul>
                 </div>
-            @endif
+            <?php endif; ?>
 
         </div>
         </nav>
-                    {{-- @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                            @endif --}}
+                    
 
 <section id="landing-hero">
     <div class="container">
@@ -41,7 +37,7 @@
     <div class="col-md-7 m-auto">
         <small class="d-block text-center">WELCOME TO</small>
         <h1 class="display-4 text-center">ALPHA HMS</h1>
-<a href="{{ route('login') }}" class="d-block m-auto mt-4 btn" style="width: 60%; background-color:#007bff">Continue to app</a>
+<a href="<?php echo e(route('login')); ?>" class="d-block m-auto mt-4 btn" style="width: 60%; background-color:#007bff">Continue to app</a>
     </div>
 
         </div>
@@ -49,3 +45,5 @@
 </section>
 
 
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Eno\Desktop\ProjectCreate-HMS\resources\views/welcome.blade.php ENDPATH**/ ?>

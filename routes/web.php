@@ -25,4 +25,5 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/register', funct
     return view('register');
 
 })->name('register');
-Route::middleware(['auth:sanctum', 'verified'])->post('/register',[UserController::class, 'create'])->name('register');
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->post('/register',[UserController::class, 'create'])->name('register');
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->post('/patients',[UserController::class, 'createpatients'])->name('patients');

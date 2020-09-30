@@ -117,6 +117,45 @@
     </div>
  --}}
 
+    <div class="modal fade" id="addpatientmodal" tabindex="-1" aria-labelledby="addpatientmodalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addpatientmodalLabel">Add Record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form method="POST" action="{{ route('patients') }}">
+                        @csrf
+
+                        <div class="form-group">
+                            <x-jet-label value="{{ __('Patient Name') }}" />
+                            <x-jet-input class="form-control" type="text" name="patient_name" :value="old('name')" required autofocus autocomplete="name" />
+                        </div>
+
+                                    <div class="form-group">
+
+                            <x-jet-label value="{{ __('Patient Condition') }}" />
+                            <x-jet-input class="form-control" type="text" name="patient_condition" :value="old('email')" required />
+                        </div>
+
+
+                                    <div class="form-group" style="display: none">
+
+                            <x-jet-label value="{{ __('Added_by') }}" />
+                            <x-jet-input class="form-control" type="text" name="added_by" required value="{{$user->id}}" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+    </div>
+  </div>
+</div>
+
  @if($user->role === 'Admin' || $user->role === 'superadmin')
  <div class="row">
      <div class="col-md-12">
@@ -172,10 +211,10 @@
                                     @forelse ($records as $record)
 <tr>
 
-                                    <td>{{$rcord->patient_name}}</td>
-                                    <td>{{$rcord->patient_condition}}</td>
-                                    <td>{{$rcord->added_by}}</td>
-                                    <td>{{$rcord->created_at}}</td>
+                                    <td>{{$record->patient_name}}</td>
+                                    <td>{{$record->patient_condition}}</td>
+                                    <td>{{$record->added_by}}</td>
+                                    <td>{{$record->created_at}}</td>
 
 
                                 </tr>
