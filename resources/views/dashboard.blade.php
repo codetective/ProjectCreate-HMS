@@ -170,6 +170,8 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                                 <tbody>
                                 @foreach ($userlist as $user)
 
@@ -181,6 +183,31 @@
                                     <td>{{$user->role}}</td>
 
 
+                                    <td>
+                                        <a href="/role-edit/{{$user->id}}" class="btn btn-success">Edit</a>
+                    
+                                        </td>
+                                        {{-- <td>
+                                           <form action="" method="get">
+                                               <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                         </td> --}}
+                                    
+                        {{-- <form action= "{{route('todo.destroy',$todo->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" name="delete"formmethod="POST" class="btn btn-danger">Delete</button>
+                         
+                        </form> --}}
+                        
+                        <td>
+                            <form action= "{{url('delete-user'.'/'.$user->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" name="delete"formmethod="POST" class="btn btn-danger">Delete</button>
+                             
+                            </form>
+                        </td>            
                                 </tr>
                                 @endforeach
 

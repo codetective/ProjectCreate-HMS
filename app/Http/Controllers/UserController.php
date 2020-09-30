@@ -67,5 +67,47 @@ public function createpatients(Request $input){
 
         return redirect('/dashboard')->withErrors(['status' => 'record created successfully']);
     }
+
+
+
+public function edit(Request $request,$id){
+    $userlist = User::findorFail($id);
+    return view('edituser')->with('users',$userlist);
+
+}
+
+public function update(Request $request,$id){
+   $userlist = User::find($id);
+
+   // $users-> update([ 
+   //     // 'name'=>$data->user_name,
+   //     // 'user_type'=>$data->user_type,
+   //     $users->name = $request->input('user_name'),
+   //     $users->user_type = $request->input('user_type'),
+   // ]);
+   $userlist->name = $request->input('name');
+       $userlist->role = $request->input('role');
+   
+   $userlist->update();
+
+   return redirect('/dashboard')->with('status','Your Data is Updated');
+}
+
+
+
+// public function delete($id){
+//     $user->delete($id);
+//     return redirect('/dashboard')->with('status','deleted');
+// }
+
+public function delete(Request $request, $id){
+    $userlist = User::find($id);
+    $userlist->delete();
+
+    return redirect('/dashboard')->with('status','Your Data is deleted');
+}
+
+
+
 }
 
