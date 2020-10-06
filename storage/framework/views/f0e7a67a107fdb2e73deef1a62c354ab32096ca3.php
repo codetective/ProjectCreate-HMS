@@ -30,7 +30,7 @@ Registered Roles
                            <input type="text" name="name" value="<?php echo e($users->name); ?>" class="form-control">
                            </div>
                            <div class="form-group">
-                               <select name="role" id="">
+                               <select name="role" id="" class="form-control">
                                 <option value="admin">admin</option>
                                 <option value="doctor">doctor</option>
                                 <option value="nurse">nurse</option>

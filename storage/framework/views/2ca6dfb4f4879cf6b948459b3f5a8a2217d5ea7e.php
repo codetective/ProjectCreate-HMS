@@ -45,23 +45,41 @@
     -->
       <div class="logo">
 
-        
+        <a href="##"  class="simple-text logo-normal">
+         <div>Logged in as <?php echo e(Auth::user()->role); ?></div>
+        </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
+          
+         
+          
+          <?php if(Auth::check() && Auth::user()->role  == "Admin"|| Auth::user()->role  == "superadmin"): ?>
           <li>
-            <a href="/register">
+            
+            <a href="##"  data-toggle="modal" data-target="#exampleModal">
               <i class="now-ui-icons design_app"></i>
               <p>Add new user</p>
             </a>
+            
           </li>
+          <?php endif; ?>
+
+          <?php if(Auth::check() && Auth::user()->role  == "Admin"|| Auth::user()->role  == "superadmin"): ?>
           <li>
             <a href="##"  data-toggle="modal" data-target="#addpatientmodal">
               <i class="now-ui-icons education_atom"></i>
               <p>Add patient record</p>
             </a>
           </li>
+          <?php endif; ?>
 
+          <!-- <li>
+            <a href="/Patientrecord" >
+              <i class="now-ui-icons education_atom"></i>
+              <p>view patient record</p>
+            </a>
+          </li> -->
 
          
         </ul>
@@ -93,10 +111,12 @@
               
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    
+                    <?php echo e(Auth::user()->name); ?>
+
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  
                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
@@ -136,37 +156,25 @@
       </div>
 
       <footer class="footer">
-          <div class=" container-fluid ">
-          <nav>
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="http://presentation.creative-tim.com">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy; <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-          </div>
-        </div>
-      </footer>
+          
     </div>
   </div>
+<!--   Core JS Files   -->
+<script src="../assets/js/core/jquery.min.js"></script>
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/core/bootstrap.min.js"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chart JS -->
+<script src="../assets/js/plugins/chartjs.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+<script src="../assets/demo/demo.js"></script>
 
-  <?php echo $__env->yieldContent('script'); ?>
+  <!-- <?php echo $__env->yieldContent('script'); ?> -->
 </body>
 
 </html>

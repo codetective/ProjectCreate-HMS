@@ -17,25 +17,23 @@ use App\Models\User;
 */
 Route::get('/', [UserController::class, 'index']);
 
-
+// Route::middleware(['auth:sanctum', 'verified'])->get('/Patientrecord',[UserController::class,'patientrecord' ])->name('Patientrecord');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',[UserController::class,'dashboard' ])->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/register', function () {
-    return view('register');
+// Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/register', function () {
+//     return view('register');
 
-})->name('register');
+// })->name('register');
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->post('/register',[UserController::class, 'create'])->name('register');
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->post('/patients',[UserController::class, 'createpatients'])->name('patients');
-Route::middleware(['auth:sanctum', 'verified'])->post('/register',[UserController::class, 'create'])->name('register');
+// Route::middleware(['auth:sanctum', 'verified'])->post('/register',[UserController::class, 'create'])->name('register');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/role-edit/{id}',[UserController::class, 'edit'])->name('role-edit');
 
-Route::middleware(['auth:sanctum', 'verified'])->put('/update-users/{id}',[UserController::class, 'update'])->name('update-user');
+Route::middleware(['auth:sanctum', 'verified'])->put('/update-user/{id}',[UserController::class, 'update'])->name('update-user');
 
 Route::middleware(['auth:sanctum', 'verified'])->delete('/delete-user/{id}',[UserController::class, 'delete'])->name('delete-user');
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/role-edit/{id}','Admin\DashboardController@edit');
 
-// Route::middleware(['auth:sanctum', 'verified'])->put('/update-users/{id}','Admin\DashboardController@update');
-     
+// Route::post('/patients','RecordsModelController@createpatients' );

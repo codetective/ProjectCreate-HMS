@@ -1,4 +1,4 @@
-@extends('layouts.app')
+<!-- {{-- @extends('layouts.app')
 
 <div class="container">
   @if ($errors->any())
@@ -67,4 +67,4 @@
 
     </section>
 </div>
-
+ --}} -->

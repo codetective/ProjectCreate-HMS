@@ -127,9 +127,8 @@
         </button>
       </div>
       <div class="modal-body">
-         <form method="POST" action="{{ route('patients') }}">
+                <form method="POST" action="{{ route('patients') }}">
                         @csrf
-
                         <div class="form-group">
                             <x-jet-label value="{{ __('Patient Name') }}" />
                             <x-jet-input class="form-control" type="text" name="patient_name" :value="old('name')" required autofocus autocomplete="name" />
@@ -142,8 +141,7 @@
                         </div>
 
 
-                                    <div class="form-group" style="display: none">
-
+                        <div class="form-group" style="display: none">
                             <x-jet-label value="{{ __('Added_by') }}" />
                             <x-jet-input class="form-control" type="text" name="added_by" required value="{{$user->id}}" />
                         </div>
@@ -154,7 +152,92 @@
                 </form>
     </div>
   </div>
-</div>
+ </div>
+
+
+
+<!-- Button trigger modal -->
+ <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>  -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <form method="POST" action="{{ route('register') }}">
+                                @csrf
+                                <!-- @method('PUT') -->
+                                <h3 class="font-weight-light">Register User</h3>
+
+                                <div class="form-group">
+                                    <x-jet-label value="{{ __('Name') }}" />
+                                    <x-jet-input class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                                </div>
+
+                                <div class="form-group">
+                                    <x-jet-label value="{{ __('Email') }}" />
+                                    <x-jet-input class="form-control" type="email" name="email" :value="old('email')" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <x-jet-label value="{{ __('Role') }}" />
+                                    <select name="role" id="role" class="form-control border" required>
+                                        <option value="Select role">Select role</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="User">Doctor</option>
+                                        <option value="User">Patient</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <x-jet-label value="{{ __('Password') }}" />
+                                    <x-jet-input class="form-control" type="password" name="password" required autocomplete="new-password" />
+                                </div>
+
+                                <div class="form-group">
+                                    <x-jet-label value="{{ __('Confirm Password') }}" />
+                                    <x-jet-input class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
+                                </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+            </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="container">
+
+    @if ($errors->any())
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+        @endforeach
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+  @endif
+  </div>
+ 
+
+
+  
+ 
 
  @if($user->role === 'Admin' || $user->role === 'superadmin')
  <div class="row">
@@ -165,7 +248,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="datatable">
                             <thead class=" text-primary">
                                 <th>Name</th>
                                 <th>Email</th>
@@ -176,39 +259,93 @@
                                 @foreach ($userlist as $user)
 
 
-                                <tr>
-
+                                 <tr>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->role}}</td>
 
 
-                                    <td>
-                                        <a href="/role-edit/{{$user->id}}" class="btn btn-success">Edit</a>
+                                 <td>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form  action="{{url('/update-user/'.$user->id)}}" method="post">
+                           @csrf
+                           @method('PUT')
+
+                           <h3>Edit User : {{$user->name}}</h3>
+                           <div class="form-group">
+                               <label for="name">Name</label>
+                           <input type="text" name="name" id="name" value="{{$user->name}}" class="form-control">
+                           </div>
+                           <div class="form-group">
+                               <label for="email">Email</label>
+                           <input type="email" name="email" id="email" value="{{$user->email}}" class="form-control">
+                           </div>
+                           <div class="form-group">
+                               <select name="role" id="" class="form-control">
+                                <option value="admin">admin</option>
+                                <option value="doctor">doctor</option>
+                                <option value="nurse">nurse</option>
+
+                               </select>
+                              
+                           </div>
+                          
                     
-                                        </td>
-                                        {{-- <td>
-                                           <form action="" method="get">
-                                               <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                         </td> --}}
-                                    
-                        {{-- <form action= "{{route('todo.destroy',$todo->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" name="delete"formmethod="POST" class="btn btn-danger">Delete</button>
-                         
-                        </form> --}}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+      </form>
+    </div>
+  </div>
+</div>
+                                  <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal{{$user->id}}">Edit</button>
+                                 </td>
+                      
                         
-                        <td>
-                            <form action= "{{url('delete-user'.'/'.$user->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" name="delete"formmethod="POST" class="btn btn-danger">Delete</button>
-                             
-                            </form>
-                        </td>            
-                                </tr>
+                                    <td>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop{{$user->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="delete_modal" action="{{url('/delete-user/'.$user->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+        <h3>Are you sure want to delete ?</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+                                        <button type='button' class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop{{$user->id}}">Delete</button>
+                                        <!-- data-toggle="modal" data-target="#deleteModalpop" -->
+                                    </td>             
+                                 </tr>
                                 @endforeach
 
               </tbody>
@@ -231,26 +368,24 @@
                             <thead class=" text-primary">
                                 <th>Patient Name</th>
                                 <th>Condition</th>
-                                <th>Added by</th>
                                 <th>Date</th>
                                 <tbody>
 
                                     @forelse ($records as $record)
-<tr>
-
+                                  <tr>
                                     <td>{{$record->patient_name}}</td>
                                     <td>{{$record->patient_condition}}</td>
                                     <td>{{$record->created_at}}</td>
 
 
-                                </tr>
+                                  </tr>
                                     @empty
-<tr>
-    <td class="text-danger">NO RECORDS FOUND</td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
+                                  <tr>
+                                    <td class="text-danger">NO RECORDS FOUND</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
                                     @endforelse
 
 
@@ -265,19 +400,9 @@
 @endsection
 
 
-@section('script')
-<!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.min.js"></script>
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!-- Chart JS -->
-<script src="../assets/js/plugins/chartjs.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="../assets/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/demo/demo.js"></script>
+@section('scripts')
+
+
+
+
 @endsection

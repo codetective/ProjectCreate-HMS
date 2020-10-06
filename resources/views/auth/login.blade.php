@@ -19,7 +19,8 @@
 
 <section id="login-page">
     <div class="container">
-        <div class="row justify-content-center align-items-center" style="height: 80vh">
+        <div class="row justify-content-center align-items-center flex-column" style="height: 80vh">
+        <h2 class="py-3 text-center">Login</h2>
  <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -52,7 +53,7 @@
                     </a>
                 @endif
 
-                <x-jet-button class="ml-4 btn-primary">
+                <x-jet-button class="ml-4" style="background-color:#007bff">
                     {{ __('Login') }}
                 </x-jet-button>
             </div>

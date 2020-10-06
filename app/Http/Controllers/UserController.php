@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\RecordsModel;
+use App\Models\PatientRecord;
 use Illuminate\Support\Facades\Auth;
 use function redirect;
 
@@ -13,15 +14,34 @@ use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
-{
-    public function index(){
-        return view('welcome')
-;
+   {
+public function index(){
+        return view('welcome');
     }
-    public function create(Request $input)
+
+
+    // public function patientrecord(){ 
+       
+    //     return view('PatientRecord');
+    //     }
+
+
+    public function dashboard(){ 
+        $user = Auth::user();
+        $userlist = [];
+        $records = PatientRecord::all();
+        if ($user->role === 'Admin' || $user->role === 'superadmin') {
+            $userlist = User::all();
+        }
+        return view('dashboard', compact(['user', 'userlist',  'records']));
+        }
+    
+
+
+public function create(Request $input)
     {
             $input->validate([
-                'name' => ['required', 'string', 'max:255', 'unique:users'],
+                'name' => ['required', 'string', 'max:255',],
                 'role' => ['string', 'max:100'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:5'],
@@ -37,34 +57,27 @@ class UserController extends Controller
                 return redirect()->back()->withErrors(['error' => 'an error occurred : user cannot be created']);
             }
             return redirect('/dashboard')->withErrors(['status' => 'user created successfully']);
-
     }
-public function dashboard(){
+    
 
-    $user = Auth::user();
-    $userlist = [];
-    $records = RecordsModel::all();
-    if ($user->role === 'Admin' || $user->role === 'superadmin') {
-        $userlist = User::all();
-    }
-return view('dashboard', compact(['user', 'userlist', 'records']));
-}
-public function createpatients(Request $input){
+
+
+    public function createpatients(Request $input){
         $input->validate([
             'patient_name' => ['required', 'string', 'max:255'],
             'patient_condition' => ['string', 'max:100'],
-            'added_by' => ['required'],
+            // 'added_by' => ['required'],
         ]);
-
-        $record_created = RecordsModel::create([
+    
+        $record_created = PatientRecord::create([
             'patient_name' => $input['patient_name'],
             'patient_condition' => $input['patient_condition'],
-            'added_by' => $input['added_by'],
+            // 'added_by' => $input['added_by'],
         ]);
         if (!$record_created) {
             return redirect()->back()->withErrors(['error' => 'an error occurred : record cannot be created']);
         }
-
+    
         return redirect('/dashboard')->withErrors(['status' => 'record created successfully']);
     }
 
@@ -77,20 +90,26 @@ public function edit(Request $request,$id){
 }
 
 public function update(Request $request,$id){
-   $userlist = User::find($id);
-
-   // $users-> update([ 
-   //     // 'name'=>$data->user_name,
-   //     // 'user_type'=>$data->user_type,
-   //     $users->name = $request->input('user_name'),
-   //     $users->user_type = $request->input('user_type'),
-   // ]);
-   $userlist->name = $request->input('name');
-       $userlist->role = $request->input('role');
    
-   $userlist->update();
+  
+$this->validate($request,[
+    'name'=>'required',
+    'email'=>'required',
+    'role'=>'required'
+]);
+    $user = User::find($id);
+   
+    //    $user->name = $request->input('name');
+    //    $userlist->email = $request->input('email');
+    //    $userlist->role = $request->input('role');
+   
 
-   return redirect('/dashboard')->with('status','Your Data is Updated');
+
+   $user->update(["name" => $request['name'], "email"=> $request['email'], "role"=> $request['role'] 
+   
+   ]);
+
+   return redirect('/dashboard')->withErrors(['status' => 'record successfully successfully']);
 }
 
 
@@ -107,7 +126,4 @@ public function delete(Request $request, $id){
     return redirect('/dashboard')->with('status','Your Data is deleted');
 }
 
-
-
-}
-
+ }
